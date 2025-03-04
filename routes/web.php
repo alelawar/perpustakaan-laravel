@@ -118,5 +118,6 @@ Route::middleware('auth')->group(function () {
 
     // RUTE MINJAM MEMINJAM
     Route::put('/pinjam/update', [PinjamanController::class, 'pinjamanUpdate'])->name('pinjaman.pinjamanUpdate');
+    Route::delete('/pinjam/delete', [PinjamanController::class, 'destroy'])->name('pinjam.delete');
     Route::resource('/pinjam', PinjamanController::class)->parameters(['pinjam' => 'dataPeminjam']);
 });

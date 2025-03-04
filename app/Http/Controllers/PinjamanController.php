@@ -25,10 +25,10 @@ class PinjamanController extends Controller
         if ($request->has('s')) {
             $query->where('token', 'like', '%' . $request->s . '%');
         }
-    
+
         return view('user.admin.datPin', [
             'pinjaman' => $query->paginate(10)->appends($request->query()),
-            'title' => 'Data pinjaman users', 
+            'title' => 'Data pinjaman users',
         ]);
     }
 
@@ -69,7 +69,8 @@ class PinjamanController extends Controller
         $peminjaman = DataPeminjam::create($validated);
 
         return redirect("/profile/detail/{$peminjaman->token}")
-        ->with('success', 'Buku berhasil dipinjam!');    }
+            ->with('success', 'Buku berhasil dipinjam!');
+    }
 
     /**
      * Display the specified resource.
@@ -103,11 +104,20 @@ class PinjamanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DataPeminjam $dataPeminjam)
+    public function destroy(Request $request)
     {
-        $dataPeminjam->delete();
+        // Validasi apakah ada data yang dipilih
+        if (!$request->has('ids')) {
+            return redirect()->back()->with('error', 'Tidak ada data yang dipilih.');
+        }
 
-        return redirect('/pinjam')->with('success', 'Data berhasil dihapus!');
+        // Ambil daftar ID yang dipilih
+        $ids = $request->input('ids');
+
+        // Hapus data berdasarkan ID yang dipilih
+        DataPeminjam::whereIn('id', $ids)->delete();
+
+        return redirect()->back()->with('success', 'Data peminjaman berhasil dihapus.');
     }
 
     public function pinjamanUpdate(Request $request)
