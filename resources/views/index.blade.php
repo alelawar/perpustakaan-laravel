@@ -6,7 +6,7 @@
                 @if ($main && $main->cover)
                     <img src="{{ asset('storage/' . $main->cover) }}" alt="" class="shadow-lg max-w-lg">
                 @else
-                    <img 
+                    <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786020637389_Kisah_dari_Tebing_Buku_2_cov_FINAL-1.jpg"
                         alt="no-img" class="shadow-lg max-w-lg">
                 @endif
                 @if ($main)
@@ -44,10 +44,9 @@
                             </div>
                         </div>
                     </div>
-                    @empty
+                @empty
                     <p class="text-center text-gray-500">Belum ada buku yang tersedia.</p>
-
-                    @endforelse
+                @endforelse
 
             </div>
         </div>
@@ -59,18 +58,31 @@
         <h1 class="mb-5 font-bold underline-offset-8 underline text-xl uppercase">List Kami</h1>
     </div>
     <div class="  grid place-items-center grid-cols-3">
-        <a href="" class="text-center hover:bg-slate-50 p-5 rounded-lg hover:border hover:border-indigo-600 ">
+        <a href="/terbaru" class="text-center hover:bg-slate-50 p-5 rounded-lg hover:border hover:border-indigo-600 ">
             <i class="bi bi-activity text-indigo-600 text-6xl"></i>
             <p class="mt-8 font-semibold ">Buku Terbaru</p>
         </a>
-        <a href="a" class="text-center hover:bg-slate-50 p-5 rounded-lg hover:border hover:border-indigo-600 ">
+        <a href="/terlaris" class="text-center hover:bg-slate-50 p-5 rounded-lg hover:border hover:border-indigo-600 ">
             <i class="bi bi-globe-americas text-indigo-600 text-6xl"></i>
-            <p class="mt-8 font-semibold ">Buku internasional</p>
+            <p class="mt-8 font-semibold ">Buku Terlaris</p>
         </a>
-        <a href="a" class="text-center hover:bg-slate-50 p-5 rounded-lg hover:border hover:border-indigo-600 ">
+        <a href="/favorit" class="text-center hover:bg-slate-50 p-5 rounded-lg hover:border hover:border-indigo-600 ">
             <i class="bi bi-award text-indigo-600 text-6xl"></i>
             <p class="mt-8 font-semibold ">Buku Populer</p>
         </a>
+    </div>
+
+    
+    <div class="mt-20 mb-8 mx-auto text-center  pb-2 flex border-b-2 w-fit border-indigo-600">
+        <h1 class=" font-bold text-xl uppercase">List Category </h1>
+    </div>
+    <div class=" text-center grid  grid-cols-5 gap-x-8 gap-y-3">
+        @forelse ($categories as $c)
+            <a href="/category/{{ $c->slug }}" class="hover:underline hover:text-sky-600"><i class="bi bi-tag text-xl mr-2"></i>{{ $c->name }}</a>
+        @empty
+            <p>Tidak ada data categories </>
+            </p>
+        @endforelse
     </div>
     {{-- list start --}}
 
@@ -96,8 +108,7 @@
                     </div>
                 </a>
             @empty
-            <p class="text-center text-gray-500">Belum ada buku yang tersedia.</p>
-
+                <p class="text-center text-gray-500">Belum ada buku yang tersedia.</p>
             @endforelse
         </div>
     </div>
@@ -123,9 +134,10 @@
                     </div>
                 </a>
             @empty
-            <p class="text-center text-gray-500">Belum ada buku yang tersedia.</p>
-
+                <p class="text-center text-gray-500">Belum ada buku yang tersedia.</p>
             @endforelse
         </div>
     </div>
+
+
 </x-layout>

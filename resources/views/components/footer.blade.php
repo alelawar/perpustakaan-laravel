@@ -2,13 +2,17 @@
 <footer class="bg-slate-300 py-5 mt-10 px-10">
     <div class="flex justify-between">
         <div class="w-1/3">
-            <h2 class="font-bold text-lg">List Produk</h2>
-            <ul class="pl-5">
-                <li><a href="#" class="hover:underline">Buku Terbaru</a></li>
-                <li><a href="#" class="hover:underline">Buku Internasional</a></li>
-                <li><a href="#" class="hover:underline">Buku Populer</a></li>
-                <li><a href="#" class="hover:underline">Buku Favorit</a></li>
-                <li><a href="#" class="hover:underline">Buku Terlaris</a></li>
+            <h2 class="font-bold text-lg">List Buku</h2>
+            <ul class="pl-2">
+                <li><a href="/terbaru" class="hover:underline">Buku Terbaru</a></li>
+                <li><a href="/favorit" class="hover:underline">Buku Favorit</a></li>
+                <li><a href="/terlaris" class="hover:underline">Buku Terlaris</a></li>
+            </ul>
+        </div>
+        <div class="w-1/3">
+            <h2 class="font-bold text-lg">List Category</h2>
+            <ul class="pl-2">
+                <li><a href="/terbaru" class="hover:underline">Lihat Selengkapnya</a></li>
             </ul>
         </div>
         <div class="w-1/3">

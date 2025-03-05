@@ -23,10 +23,11 @@ Route::get('/', function () {
     // Ambil 7 data favorit secara random, tetapi tidak termasuk buku yang ada di $terlaris
     $favorites = DataBuku::take(7)->latest()->get();
     $title = 'Home page';
+    $categories = Category::all();
 
     return view(
         'index',
-        compact('terlaris', 'main', 'second', 'favorites', 'title')
+        compact('terlaris', 'main', 'second', 'favorites', 'title', 'categories')
     );
 });
 
