@@ -82,6 +82,12 @@
                                             <option value="sudah dikembalikan"
                                                 {{ $p->status == 'sudah dikembalikan' ? 'selected' : '' }}>Sudah
                                                 Dikembalikan</option>
+                                            <option value="belum diambil"
+                                                {{ $p->status == 'belum diambil' ? 'selected' : '' }}>Belum
+                                                diambil</option>
+                                            <option value="sudah diambil"
+                                                {{ $p->status == 'sudah diambil' ? 'selected' : '' }}>Sudah
+                                                diambil</option>
                                         </select>
                                     </td>
                                     <td class="px-3 py-2">{{ $p->token }}</td>
