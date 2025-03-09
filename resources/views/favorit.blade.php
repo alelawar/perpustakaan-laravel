@@ -1,4 +1,17 @@
 <x-layout :title="$title">
+    @if (session('status'))
+    <div x-data="{ show: true }" x-show="show" class="fixed inset-0 flex items-center justify-center bg-stone-950/50 z-50">
+        <div class="bg-primer-color flex flex-col items-center bg-white z-50 text-white px-6 py-3 rounded-lg shadow-lg">
+            <i class="bi bi-check2 text-green-500 font-extrabold text-4xl"></i>
+            <div class="mt-5 flex flex-col items-center">
+                <p class="text-black text-lg">{{ session('status') }}</p>
+                <a href="/profile/wishlist" class="text-black text-lg underline underline-offset-4" >Cek Disini</a>
+                <button @click="show = false" class="mt-2 px-4 py-2 bg-red-500 text-white rounded cursor-pointer hover:bg-red-600">Ok</button>
+            </div>
+        </div>
+    </div>
+    @endif
+    
     <div class="container mx-auto px-4 py-8">
         <!-- Header Section -->
         <div class="mb-8 border-l-4 border-indigo-600 pl-4">
@@ -38,8 +51,27 @@
                             <h3 class="font-medium text-gray-800 mb-1 line-clamp-2 group-hover:text-blue-600 transition">{{ $f->judul }}</h3>
                             <p class="text-sm text-gray-500">{{ $f->pembuat }}</p>
                         </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100">
-                            
+                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-end">
+                            @auth
+                                @php
+                                    $isWished = auth()->user()->wishlist()->where('book_id', $f->id)->exists();
+                                @endphp
+                                <form action="{{ route('wishlist.toggle') }}" method="POST" class="inline">
+                                    @csrf
+                                    <input type="hidden" name="book_id" value="{{ $f->id }}">
+                                    <button type="submit" class="text-blue-500">
+                                        @if ($isWished)
+                                            <i class="bi bi-bookmark-fill"></i>
+                                        @else
+                                            <i class="bi bi-bookmark"></i>
+                                        @endif
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="text-blue-500">
+                                    <i class="bi bi-bookmark"></i>
+                                </a>
+                            @endauth
                         </div>
                     </div>
                     <div class="px-4 pb-4">

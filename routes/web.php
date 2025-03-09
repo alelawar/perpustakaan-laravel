@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WishlistController;
 
 Route::get('/', function () {
     // Ambil 7 buku terlaris
@@ -105,6 +106,13 @@ Route::middleware('auth')->group(function () {
         
     });
 
+
+    // RESOURCE WISHLIST
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile/wishlist', [WishlistController::class, 'index'])->name('favorites.index');
+        Route::post('/user/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+        Route::delete('/user/wishlist/{id}', [WishlistController::class, 'destroy'])->name('favorites.destroy');
+    });
     
     // RESOURCE GET CATEGORY
     Route::get('/category/books/checkSlug', [CategoryController::class, 'checkSlug']);

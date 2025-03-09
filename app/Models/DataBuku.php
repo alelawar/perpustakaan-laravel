@@ -38,4 +38,9 @@ class DataBuku extends Model
             ]
         ];
     }
+
+    public function wishlistedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'wishlist');
+    }
 }

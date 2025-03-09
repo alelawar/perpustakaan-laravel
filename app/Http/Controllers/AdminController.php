@@ -65,7 +65,7 @@ class AdminController extends Controller
             'judul' => 'required|string|max:255',
             'slug' => 'required|string|unique:data_buku,slug',
             'pembuat' => 'required|string|max:255',
-            'cover' => 'nullable|image|file|max:5024',
+            'cover' => 'nullable|file|max:5024',
             'deskripsi' => 'required|string',
             'penerbit' => 'required|string|max:255',
             'isbn' => 'required|string|size:13|unique:data_buku,isbn',
@@ -113,7 +113,7 @@ class AdminController extends Controller
         $rules = [
             'judul' => 'required|string|max:255',
             'pembuat' => 'required|string|max:255',
-            'cover' => 'nullable|image|file|max:5024',
+            'cover' => 'nullable|file|max:5024',
             'deskripsi' => 'required|string',
             'penerbit' => 'required|string|max:255',
             'halaman' => 'required|integer|min:1',
